@@ -10,7 +10,7 @@ public class SinglTonClassForJdbc {
         throw new UnsupportedOperationException("Cannot Call Constructor");
     }
 
-    public static  void LoadClass() throws ClassNotFoundException {
+    public static  void LoadClass() throws ClassNotFoundException{
         Class.forName("com.mysql.cj.jdbc.Driver");
     }
 

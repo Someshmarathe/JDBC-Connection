@@ -1,5 +1,10 @@
+import java.sql.SQLException;
+
 public interface ServiceLayerRepository {
-    public String Insertions(Student stdObject , CrudOperations operations);
-    public  Student FectData(String name , String password);
+
+      String insertData(Student stdObject);
+      Student fetchDataById(Student getObject) throws SQLException, ClassNotFoundException;
+      Student updateDataById(int id);
+     int deleteDataById(int id);
 
 }

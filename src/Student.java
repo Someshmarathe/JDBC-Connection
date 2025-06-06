@@ -4,35 +4,48 @@ public class Student {
     private int age;
     private String password;
 
-    public int getAge() {
-        return age;
+    public Student(int id , String name, String password , int age) {
+        this.age = age;
+        this.id = id;
+        this.name = name;
+        this.password = password;
     }
 
-    public void setAge(int age) {
+    public Student(String name, String password , int age) {
         this.age = age;
+        this.id = (int) (Math.random() * 10);
+        this.name = name;
+        this.password = password;
+    }
+
+    public Student(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "age=" + age +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

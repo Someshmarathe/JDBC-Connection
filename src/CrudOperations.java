@@ -1,25 +1,38 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
 public class CrudOperations {
 
-    public String Operations() throws ClassNotFoundException, SQLException {
-
+    public String insertJDBCOperation(Student obj) throws ClassNotFoundException, SQLException {
         Connection con = SinglTonClassForJdbc.getConnection();
         PreparedStatement statementObj = con.prepareStatement("insert into employe values (?,?,?,?)");
-        statementObj.setInt(1, 3);
-        statementObj.setString(2, "Kapil");
-        statementObj.setString(3, "@Kapil20");
-        statementObj.setInt(4, 21);
-
+        statementObj.setInt(1, obj.getId());
+        statementObj.setString(2, obj.getName());
+        statementObj.setString(3, obj.getPassword());
+        statementObj.setInt(4, obj.getAge());
         int i = statementObj.executeUpdate();
         if (i > 0) {
-            System.out.println("Done");
+            return "Done";
         } else {
-            System.out.println("not Done");
+             return "Not Insert";
         }
-        return "";
+    }
+
+    public Student fetchJDBCOperation(Student obj) throws ClassNotFoundException, SQLException {
+        Connection con = SinglTonClassForJdbc.getConnection();
+        PreparedStatement statementObj = con.prepareStatement("Select * from employe where name= ? and password = ?");
+        statementObj.setString(1 , obj.getName());
+        statementObj.setString(2 , obj.getPassword());
+        Student std = null;
+        ResultSet rs  = statementObj.executeQuery();
+        if (rs.next()) {
+              return new Student(rs.getInt("id"),rs.getString("name"),rs.getString("password") , rs.getInt("age"));
+        } else {
+               return null;
+        }
+
     }
 }
