@@ -4,7 +4,7 @@ public class ServiceLayerImplmentation implements ServiceLayerRepository
 {
 
     @Override
-    public  Student fetchDataById(Student getObject) throws SQLException, ClassNotFoundException {
+    public  Student fetchDataByNamePassword(Student getObject) throws SQLException, ClassNotFoundException {
         return  new CrudOperations().fetchJDBCOperation(getObject);
     }
 
@@ -25,7 +25,12 @@ public class ServiceLayerImplmentation implements ServiceLayerRepository
     }
 
     @Override
-    public int deleteDataById(int id) {
-        return 0;
+    public String deleteDataByNamePassword(Student delObject){
+        try{
+            return new CrudOperations().deleteJDBCOperation(delObject);
+        }
+        catch (Exception e){
+            return "Not Delete";
+        }
     }
 }

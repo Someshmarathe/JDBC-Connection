@@ -35,4 +35,21 @@ public class CrudOperations {
         }
 
     }
+
+    public String deleteJDBCOperation(Student obj) throws ClassNotFoundException, SQLException {
+        Connection con = SinglTonClassForJdbc.getConnection();
+        PreparedStatement statementObj = con.prepareStatement("delete from employe where name = ? and password = ?");
+        statementObj.setString(1 , obj.getName());
+        statementObj.setString(2 , obj.getPassword());
+
+        int i = statementObj.executeUpdate();
+        if (i>0) {
+            return "Delete Your Record";
+        } else {
+            return "Not Record Deleted";
+        }
+
+    }
+
+
 }
